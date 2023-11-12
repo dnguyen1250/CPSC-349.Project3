@@ -1,12 +1,21 @@
 {
-  "name": "cpsc349-project1",
+  "name": "cpsc-349.project3",
   "version": "1.0.0",
-  "type": "module",
-  "description": "CPSC 349 - Project 1",
+  "description": "cpsc349-project1",
+  "main": "index.js",
   "scripts": {
     "start": "eleventy --serve --config=.eleventy.cjs"
   },
-  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smminassian/CPSC-349.Project3.git"
+  },
+  "author": "seb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smminassian/CPSC-349.Project3/issues"
+  },
+  "homepage": "https://github.com/smminassian/CPSC-349.Project3#readme",
   "private": true,
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
