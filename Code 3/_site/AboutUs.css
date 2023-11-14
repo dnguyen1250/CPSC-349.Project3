@@ -15,3 +15,14 @@ a{
     align-items: center;
 
 }
+
+.theCrew h1{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.crewMember{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
