@@ -9,13 +9,6 @@ a{
     margin-right: 1.5rem;
 }
 
-.aboutUsHeader{
-    text-align: center;
-    font-size: x-large;
-    align-items: center;
-
-}
-
 .theCrew h1{
     display:flex;
     justify-content: center;
@@ -25,4 +18,12 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.gitHubImage{
+    height: 40px;
+    width: 40px;
+}
+img{
+    height: 300px;
+    width: 300px;
 }
