@@ -1,24 +1,50 @@
 
-<head>
-    <title>Home - CPSC 349 - Project 1</title>
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - CPSC 349 - Project 3</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+  </head>
 
-<body>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </nav>
     
-<header>   <!--Index.html in site folder relies on the index.html that is between .gitignore and package-lock.json-->
+<header>
   <h1>Home</h1>
 </header>
-<a href="AboutUs.html">About Us</a>
-<footer>
-  <hr />
-  <p>
-    <small>
-      <a href="https://www.pexels.com" target="_blank"
-        >Photos provided by Pexels</a
-      >
-    </small>
-  </p>
-</footer>
 
-</body>
+<main>
+  <h2>Featured Photos</h2>
+  <div id="photos-container">
+    <!-- Photos will be dynamically added here -->
+  </div>
+</main>
+
+<script>
+  // load photos data from photos.0apgfsq.json
+  fetch("/_data/photos.0apgfsq.json")
+    .then((response) => response.json())
+    .then((photosData) => {
+      const photosContainer = document.getElementById("photos-container");
+
+      photosData.media.forEach((photo) => {
+        const figure = document.createElement("figure");
+        figure.innerHTML = `
+          <img src="${photo.src.tiny}" alt="${photo.alt}">
+          <figcaption>Photographer: ${photo.photographer}</figcaption>
+        `;
+        photosContainer.appendChild(figure);
+      });
+    })
+    .catch((error) => console.error("Error loading photos:", error));
+</script>
+
+  </body>
+</html>
