@@ -14,10 +14,34 @@ a{
     justify-content: center;
     align-items: center;
 }
-.crewMember{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+body{
+    animation: fadeIn 4s ease-in;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+
+    }
+    to{
+        opacity: 1;
+
+    }
+}
+@keyframes moveRight {
+    from{
+        transform: translateX(0%);
+    }
+    to{
+        transform: translateX(50%);
+
+    }
+    
+}
+
+.Sebastien img{
+   animation: moveRight 4s ease-in;
 }
 .gitHubImage{
     height: 40px;
