@@ -1,6 +1,9 @@
 ---
 layout: base.html
 title: Home
+pagination:
+    data: photos_0apgfsq.media
+    size: 80
 ---
 
 <header>
@@ -9,34 +12,21 @@ title: Home
 
 <main>
   <h2>Featured Photos</h2>
-  <div id="photos-container">
-    <!-- Photos will be dynamically added here -->
-  </div>
+  {% for photo in pagination.items -%}
+    <div id="photos-container">
+      <img id="{{forloop.index}}" src="{{photo.src.tiny}}" alt="{{photo.alt}}" style='background-color: {{ photo.avg_color }}'>
+      <figcaption>Photographer: {{photo.photographer}}</figcaption>
+    </div>
+  {% endfor -%}
 </main>
 
 <script>
   // load photos data from photos.0apgfsq.json
-  fetch("/_data/photos_0apgfsq.json")
-    .then((response) => response.json())
-    .then((photosData) => {
-      const photosContainer = document.getElementById("photos-container");
-      console.log(photosData);
-
-      photosData.media.forEach((photo, index) => {
-        const figure = document.createElement("figure");
-        figure.innerHTML = `
-          <img id=${index} src="${photo.src.tiny}" alt="${photo.alt}">
-          <figcaption>Photographer: ${photo.photographer}</figcaption>
-        `;
-        photosContainer.appendChild(figure);
-      });
-    })
-    .catch((error) => console.error("Error loading photos:", error));
-
     document.addEventListener("click", function(e) {
       if (e.target && e.target.nodeName == "IMG") {
         console.log(e.target.id + " was clicked");
-        window.location.href = "/photos/photo-" + e.target.id + "/index.html";
+        const photo = e.target.id - 1;
+        window.location.href = "/photos/photo-" + photo + "/index.html";
       }
     });
 </script>
