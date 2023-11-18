@@ -16,19 +16,27 @@ title: Home
 
 <script>
   // load photos data from photos.0apgfsq.json
-  fetch("/_data/photos.0apgfsq.json")
+  fetch("/_data/photos_0apgfsq.json")
     .then((response) => response.json())
     .then((photosData) => {
       const photosContainer = document.getElementById("photos-container");
+      console.log(photosData);
 
-      photosData.media.forEach((photo) => {
+      photosData.media.forEach((photo, index) => {
         const figure = document.createElement("figure");
         figure.innerHTML = `
-          <img src="${photo.src.tiny}" alt="${photo.alt}">
+          <img id=${index} src="${photo.src.tiny}" alt="${photo.alt}">
           <figcaption>Photographer: ${photo.photographer}</figcaption>
         `;
         photosContainer.appendChild(figure);
       });
     })
     .catch((error) => console.error("Error loading photos:", error));
+
+    document.addEventListener("click", function(e) {
+      if (e.target && e.target.nodeName == "IMG") {
+        console.log(e.target.id + " was clicked");
+        window.location.href = "/photos/photo-" + e.target.id + "/index.html";
+      }
+    });
 </script>
