@@ -1,18 +1,21 @@
 ---
-layout: base.html
-permalink: /photo/
+title: Photos Paged
+pagination:
+    data: photos_0apgfsq.media
+    size: 1
+permalink: "photos/photo-{{ pagination.pageNumber }}/index.html"
 ---
 
-<!-- use this as the layout for each individual picture? -->
-
-<!-- <main>
+<main>
+  {% for photo in pagination.items -%}
   <h1>{{ photo.alt }}</h1>
   <figure>
     <img
-      src="{{ photo.src.tiny }}"
+      src="{{ photo.src.large }}"
       alt="{{ photo.alt }}"
       style="background-color: {{ photo.avg_color }};"
     />
     <figcaption>Photographer: {{ photo.photographer }}</figcaption>
   </figure>
-</main> -->
+  {% endfor -%}
+</main>

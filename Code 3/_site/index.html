@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - CPSC 349 - Project 3</title>
     <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
-    <link rel="stylesheet" href="/Code 3/css/about.css" />
+    <!-- <link rel="stylesheet" href="/Code 3/css/about.css" /> -->
   </head>
 
   <body>
@@ -30,21 +30,29 @@
 
 <script>
   // load photos data from photos.0apgfsq.json
-  fetch("/_data/photos.0apgfsq.json")
+  fetch("/_data/photos_0apgfsq.json")
     .then((response) => response.json())
     .then((photosData) => {
       const photosContainer = document.getElementById("photos-container");
+      console.log(photosData);
 
-      photosData.media.forEach((photo) => {
+      photosData.media.forEach((photo, index) => {
         const figure = document.createElement("figure");
         figure.innerHTML = `
-          <img src="${photo.src.tiny}" alt="${photo.alt}">
+          <img id=${index} src="${photo.src.tiny}" alt="${photo.alt}">
           <figcaption>Photographer: ${photo.photographer}</figcaption>
         `;
         photosContainer.appendChild(figure);
       });
     })
     .catch((error) => console.error("Error loading photos:", error));
+
+    document.addEventListener("click", function(e) {
+      if (e.target && e.target.nodeName == "IMG") {
+        console.log(e.target.id + " was clicked");
+        window.location.href = "/photos/photo-" + e.target.id + "/index.html";
+      }
+    });
 </script>
 
   </body>

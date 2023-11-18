@@ -1,6 +1,4 @@
 {
-  "page": 1,
-  "per_page": 80,
   "media": [
     {
       "type": "Photo",
@@ -1842,8 +1840,5 @@
       "liked": false,
       "alt": "Makin' Magic Album Sleeve"
     }
-  ],
-  "total_results": 133,
-  "next_page": "https://api.pexels.com/v1/collections/0apgfsq/?page=2&per_page=80&type=photos",
-  "id": "0apgfsq"
+  ]
 }
