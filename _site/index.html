@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - CPSC 349 - Project 3</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+    
+<header>
+  <h1>Home</h1>
+</header>
+
+<main>
+  <h2>Featured Photos</h2>
+  <div id="photos-container">
+    <!-- Photos will be dynamically added here -->
+  </div>
+</main>
+
+<script>
+  // load photos data from photos.0apgfsq.json
+  fetch("/_data/photos_0apgfsq.json")
+    .then((response) => response.json())
+    .then((photosData) => {
+      const photosContainer = document.getElementById("photos-container");
+      console.log(photosData);
+
+      photosData.media.forEach((photo, index) => {
+        const figure = document.createElement("figure");
+        figure.innerHTML = `
+          <img id=${index} src="${photo.src.tiny}" alt="${photo.alt}">
+          <figcaption>Photographer: ${photo.photographer}</figcaption>
+        `;
+        photosContainer.appendChild(figure);
+      });
+    })
+    .catch((error) => console.error("Error loading photos:", error));
+
+    document.addEventListener("click", function(e) {
+      if (e.target && e.target.nodeName == "IMG") {
+        console.log(e.target.id + " was clicked");
+        window.location.href = "/photos/photo-" + e.target.id + "/index.html";
+      }
+    });
+</script>
+
+  </body>
+</html>
