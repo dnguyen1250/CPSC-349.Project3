@@ -1,0 +1,32 @@
+---
+layout: base.html
+title: Home
+pagination:
+    data: photos_0apgfsq.media
+    size: 80
+---
+
+<header>
+  <h1>{{ title }}</h1>
+</header>
+
+<main>
+  <h2>Featured Photos</h2>
+  {% for photo in pagination.items -%}
+    <div id="photos-container">
+      <img id="{{forloop.index}}" src="{{photo.src.tiny}}" alt="{{photo.alt}}" style='background-color: {{ photo.avg_color }}'>
+      <figcaption>Photographer: {{photo.photographer}}</figcaption>
+    </div>
+  {% endfor -%}
+</main>
+
+<script>
+  // load photos data from photos.0apgfsq.json
+    document.addEventListener("click", function(e) {
+      if (e.target && e.target.nodeName == "IMG") {
+        console.log(e.target.id + " was clicked");
+        const photo = e.target.id - 1;
+        window.location.href = "/photos/photo-" + photo + "/index.html";
+      }
+    });
+</script>
